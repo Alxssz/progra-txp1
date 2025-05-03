@@ -1,10 +1,6 @@
 package com.example.personaumg4.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,8 +11,10 @@ import java.io.Serializable;
 public class Pais implements Serializable {
 
     @Id
+    @Column(name = "id_pais")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String nombre;
 }
 

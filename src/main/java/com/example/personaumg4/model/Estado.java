@@ -20,7 +20,7 @@ public class Estado implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name="id_pais", referencedColumnName = "pais_id")
+    @JoinColumn(name="id_pais", referencedColumnName = "id_pais")
     private Pais pais;
     private String nombre;
 }

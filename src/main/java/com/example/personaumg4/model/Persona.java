@@ -19,9 +19,13 @@ public class Persona implements Serializable {
     private Integer edad;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_pais", referencedColumnName = "id")
+    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     private Pais pais;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_estado", referencedColumnName = "id")
     private Estado estado;
+
+    @Column(name = "estado_p", insertable = false)
+    private String estadoP;
 }

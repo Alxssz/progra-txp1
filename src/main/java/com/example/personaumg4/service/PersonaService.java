@@ -19,7 +19,7 @@ public class PersonaService {
     private PersonaRepository personaRepository;
 
     public List<Persona> findAll() {
-        return personaRepository.findAll();
+        return personaRepository.findByEstadoP("E");
     }
 
     public List<Persona> findAll(Sort sort) {
@@ -41,9 +41,11 @@ public class PersonaService {
 
 
     public Boolean deleteById(Long id) {
-        if (personaRepository.existsById(id)) {
-            personaRepository.deleteById(id);
-            return !personaRepository.existsById(id);
+        Persona persona =  personaRepository.findById(id).orElse(null);
+        if (persona != null){
+            persona.setEstadoP("D");
+            personaRepository.save(persona);
+            return true;
         }
         return false;
     }
