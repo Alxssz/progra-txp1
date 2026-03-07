@@ -1,12 +1,13 @@
 <p>
-  <mat-toolbar >
+  <mat-toolbar>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My Application</span>
+    <span>Formulario</span>
   </mat-toolbar>
 </p>
-<mat-expansion-panel [(expanded)]="panelOpenState" >
+
+<mat-expansion-panel [(expanded)]="panelOpenState">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Agregar una persona
@@ -24,106 +25,176 @@
     </mat-card-header>
 
     <div class="formularioRegistro">
-      <form [formGroup]="personaForm" (ngSubmit)="guardar()">
+      
+      <form [formGroup]="personaForm" (ngSubmit)="guardar()">   
+
+<!-- NOMBRE / APELLIDO -->
         <div class="form-group">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" formControlName="nombre" class="form-control">
+            <input matInput type="text" formControlName="nombre">
+            <mat-error *ngIf="personaForm.get('nombre')?.hasError('required')">
+              El nombre es obligatorio
+            </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill">
+
+          <mat-form-field appearance="outline">
             <mat-label>Apellido</mat-label>
-            <input matInput type="text" formControlName="apellido" class="form-control">
+            <input matInput type="text" formControlName="apellido">
           </mat-form-field>
         </div>
+
+<!-- EDAD -->
         <div class="form-group">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Edad</mat-label>
-            <input matInput type="number" formControlName="edad" class="form-control">
+            <input matInput type="number" formControlName="edad" min="0" max="100" placeholder="Ingrese su edad">
           </mat-form-field>
         </div>
+
+        <!-- CUI -->
         <div class="form-group">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
+            <mat-label>CUI</mat-label>
+            <input matInput type="tel" inputmode="numeric" pattern="\d*" maxlength="13" formControlName="cui" placeholder="13 dígitos numéricos">
+            <mat-error *ngIf="personaForm.get('cui')?.hasError('required')">
+              El CUI es requerido
+            </mat-error>
+            <mat-error *ngIf="personaForm.get('cui')?.hasError('pattern')">
+              El CUI debe contener 13 dígitos
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+<!-- PAIS / ESTADO -->
+        <div class="form-group">
+          <mat-form-field appearance="outline">
             <mat-label>Selecciona un pais</mat-label>
-            <mat-select name="pais" id="pais" formControlName="pais">
-              <mat-option [value]="item" *ngFor="let item of paises">{{item.nombre}}</mat-option>
+            <mat-select formControlName="pais">
+              <mat-option *ngFor="let item of paises" [value]="item">
+                {{item.nombre}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="fill">
+
+          <mat-form-field appearance="outline">
             <mat-label>Selecciona un estado o departamento</mat-label>
-            <mat-select name="estado" id="estado" formControlName="estado">
-              <mat-option [value]="item" *ngFor="let item of estados">{{item.nombre}}</mat-option>
+            <mat-select formControlName="estado">
+              <mat-option *ngFor="let item of estados" [value]="item">
+                {{item.nombre}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <button mat-button color="primary" type="submit" [disabled]="personaForm.invalid">Guardar</button>
+
+        <!-- NIVEL / CARRERA -->
+        <div class="form-group">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nivel</mat-label>
+            <mat-select formControlName="nivel">
+              <mat-option *ngFor="let n of niveles" [value]="n">
+                {{ n.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Carrera</mat-label>
+            <mat-select formControlName="carrera" [disabled]="!carreras || carreras.length === 0">
+              <mat-option *ngFor="let c of carreras" [value]="c">
+                {{ c.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
+        <button mat-button color="primary" type="submit" [disabled]="personaForm.invalid">
+          Guardar
+        </button>
+
       </form>
     </div>
   </mat-card>
-
 </mat-expansion-panel>
 
+<!-- TABLA -->
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Personas registradas</mat-card-title>
-    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-title class="titulo-personas">Personas Registradas</mat-card-title>
   </mat-card-header>
+
   <div class="mat-elevation-z8">
-    <table mat-table #table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-  
+
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
       <ng-container matColumnDef="id">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="name">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="last-name">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Apellido </th>
-        <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Apellido</th>
+        <td mat-cell *matCellDef="let element">{{element.apellido}}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="age">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Edad </th>
-        <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Edad</th>
+        <td mat-cell *matCellDef="let element">{{element.edad}}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="country-name">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Pais </th>
-        <td mat-cell *matCellDef="let element"> {{element.pais.nombre}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Pais</th>
+        <td mat-cell *matCellDef="let element">{{element.pais?.nombre}}</td>
       </ng-container>
-  
+
       <ng-container matColumnDef="state-name">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef> Estado </th>
-        <td mat-cell *matCellDef="let element"> {{element.estado.nombre}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let element">{{element.estado?.nombre}}</td>
       </ng-container>
-  
+
+
+      <ng-container matColumnDef="nivel-name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Nivel</th>
+        <td mat-cell *matCellDef="let element">{{element.nivel?.nombre}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="carrera-name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Carrera</th>
+        <td mat-cell *matCellDef="let element">{{element.carrera?.nombre}}</td>
+      </ng-container>
+
+
       <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <th mat-header-cell *matHeaderCellDef>Opciones</th>
         <td mat-cell *matCellDef="let element">
-  
-          <div class="example-button-container">
-            <button mat-mini-fab color="basic" aria-label="Example icon button with a delete icon"
-              (click)="editar(element)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
-              (click)="eliminar(element)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
+          <button mat-mini-fab class="btn-edit" (click)="editar(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab class="btn-delete" (click)="eliminar(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </ng-container>
-  
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
+
     </table>
-    <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+
+    <mat-paginator
+      [pageSize]="5"
+      [pageSizeOptions]="[5,10,20]"
+      showFirstLastButtons>
     </mat-paginator>
+
   </div>
 </mat-card>
 

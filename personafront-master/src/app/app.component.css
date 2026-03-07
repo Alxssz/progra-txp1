@@ -1,14 +1,141 @@
+/* Contenedor del formulario */
 .formularioRegistro{
-    padding-left: 30%;
-    padding-right: 30%;
-    margin-top: 3%;
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 10px 16px 16px 16px;
 }
 
-table {
-    width: 100%;
+/* Hace que los campos se vean alineados y con buen espacio */
+.form-group{
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 
-.example-button-row {
-    display: table-cell;
-    width: 490px;
+/* Cuando solo hay un campo en la fila */
+.form-group mat-form-field{
+  flex: 1;
 }
+
+/* Tarjetas más limpias */
+mat-card{
+  margin: 24px auto;
+  max-width: 1100px;
+}
+
+/* Tabla al ancho del card */
+table{
+  width: 100%;
+}
+
+/* Cabecera de la tabla campos */
+th{
+  font-weight: 600;
+}
+
+
+/* Fila al pasar el mouse  */
+tr.mat-row:hover{
+  background: #f5f7fa;
+}
+
+/* Columna de botones */
+.example-button-container{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* BOTON GUARDAR*/
+button[type="submit"]{
+  margin-top: 16px;
+  padding: 10px 22px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  cursor: pointer;
+  transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
+}
+/* hover */
+button[type="submit"]:hover:not(:disabled){
+  background-color: #36449b;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  transform: translateY(-1px);
+}
+/* cuando está deshabilitado */
+button[type="submit"]:disabled{
+  background-color: #cfd4dc;
+  color: #7a7a7a;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+
+/* Toolbar un poco más limpio */
+mat-toolbar{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Contenedor del panel */
+mat-expansion-panel{
+  max-width: 1100px;
+  margin: 24px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+/* Header del panel */
+mat-expansion-panel-header{
+  min-height: 56px;
+  padding: 0 20px;
+}
+
+/* Título agregar persona*/
+mat-panel-title{
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Texto secundario */
+mat-panel-description{
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+
+/* Separación más limpia entre header y contenido */
+.mat-expansion-panel-body{
+  padding-top: 16px;
+}
+
+.titulo-personas{
+  color: #f5f7fa;   /* gris oscuro minimalista */
+  font-weight: 600;
+  padding-left: 0;
+}
+
+/* Botón editar */
+.btn-edit {
+  background-color: #A3B6D4;
+  color: #000;
+}
+
+.btn-edit:hover {
+  background-color: #525C6D;
+}
+
+/* Botón eliminar */
+.btn-delete {
+  background-color: #D4DAF1;
+  color: #000;
+}
+
+.btn-delete:hover {
+  background-color: #525C6D;
+}
+
