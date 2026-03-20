@@ -1,56 +1,63 @@
 /* Contenedor del formulario */
-.formularioRegistro{
+.formularioRegistro {
   max-width: 720px;
   margin: 24px auto;
   padding: 10px 16px 16px 16px;
 }
 
 /* Hace que los campos se vean alineados y con buen espacio */
-.form-group{
+.form-group {
   display: flex;
   gap: 16px;
   margin-bottom: 12px;
 }
 
 /* Cuando solo hay un campo en la fila */
-.form-group mat-form-field{
+.form-group mat-form-field {
   flex: 1;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 /* Tarjetas más limpias */
-mat-card{
+mat-card {
   margin: 24px auto;
   max-width: 1100px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 
 /* Tabla al ancho del card */
-table{
+table {
   width: 100%;
+  border-radius: 8px;
 }
 
 /* Cabecera de la tabla campos */
-th{
+th {
   font-weight: 600;
+  color: #ffffff;
 }
 
-
-/* Fila al pasar el mouse  */
-tr.mat-row:hover{
-  background: #f5f7fa;
+/* Fila al pasar el mouse */
+tr.mat-row:hover {
+  background: #f0f4f9; /* Gris muy claro */
 }
 
 /* Columna de botones */
-.example-button-container{
+.example-button-container {
   display: flex;
   gap: 8px;
   justify-content: center;
 }
 
-/* BOTON GUARDAR*/
-button[type="submit"]{
+/* BOTON GUARDAR */
+button[type="submit"] {
   margin-top: 16px;
   padding: 10px 22px;
-  background-color: #3f51b5;
+  background-color: #d71f27; /* Rojo UMG */
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -59,83 +66,76 @@ button[type="submit"]{
   cursor: pointer;
   transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
 }
-/* hover */
-button[type="submit"]:hover:not(:disabled){
-  background-color: #36449b;
-  box-shadow: 0 4px 10px rgba(0,0,0,.12);
-  transform: translateY(-1px);
-}
+
 /* cuando está deshabilitado */
-button[type="submit"]:disabled{
+button[type="submit"]:disabled {
   background-color: #cfd4dc;
   color: #7a7a7a;
   box-shadow: none;
   cursor: not-allowed;
 }
 
-
-/* Toolbar un poco más limpio */
-mat-toolbar{
+/* Toolbar azul UMG */
+mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: #002663; /* Azul oscuro UMG */
+  color: #ffffff;
 }
 
 /* Contenedor del panel */
-mat-expansion-panel{
+mat-expansion-panel {
   max-width: 1100px;
   margin: 24px auto;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  background-color: #d71f27; /* Rojo UMG */
 }
 
-/* Header del panel */
-mat-expansion-panel-header{
-  min-height: 56px;
-  padding: 0 20px;
-}
-
-/* Título agregar persona*/
-mat-panel-title{
+/* Título agregar persona */
+mat-panel-title {
   font-weight: 600;
   font-size: 15px;
+  color: #ffffff;
 }
 
 /* Texto secundario */
-mat-panel-description{
+mat-panel-description {
   font-size: 13px;
-  opacity: 0.6;
+  opacity: 0.8;
+  color: #ffffff;
 }
 
-
 /* Separación más limpia entre header y contenido */
-.mat-expansion-panel-body{
+.mat-expansion-panel-body {
   padding-top: 16px;
 }
 
-.titulo-personas{
-  color: #f5f7fa;   /* gris oscuro minimalista */
+/* Título personas registradas */
+.titulo-personas {
+  color: #ffffff; /* Azul UMG */
   font-weight: 600;
   padding-left: 0;
+
 }
 
 /* Botón editar */
 .btn-edit {
-  background-color: #A3B6D4;
-  color: #000;
+  background-color: #d71f27; /* Rojo UMG */
+  color: #fff;
 }
 
 .btn-edit:hover {
-  background-color: #525C6D;
+  background-color: #a71a20;
 }
 
 /* Botón eliminar */
 .btn-delete {
-  background-color: #D4DAF1;
-  color: #000;
+  background-color: #002663; /* Azul UMG */
+  color: #fff;
 }
 
 .btn-delete:hover {
-  background-color: #525C6D;
+  background-color: #001f44;
 }
-

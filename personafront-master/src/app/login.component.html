@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+  <mat-card class="login-card mat-elevation-z8">
+
+    <mat-card-header>
+      <mat-card-title>Iniciar Sesión</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (ngSubmit)="onLogin()" class="login-form">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-label>Usuario</mat-label>
+          <input matInput [(ngModel)]="username" name="username" >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" [(ngModel)]="password" name="password" >
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="login-btn" type="submit" [disabled]="loading">
+          {{ loading ? 'Ingresando...' : 'Ingresar' }}
+        </button>
+
+        <p class="mensaje" *ngIf="mensaje">{{ mensaje }}</p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

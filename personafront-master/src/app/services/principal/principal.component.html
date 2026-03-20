@@ -1,9 +1,19 @@
 <p>
-  <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <mat-toolbar color="primary">
+    <button mat-icon-button aria-label="Menu">
       <mat-icon>menu</mat-icon>
     </button>
+    <img src="assets/logo-umg.png" alt="Logo UMG" width="40" style="margin: 0 8px 0 0;">
     <span>Formulario</span>
+
+    <span class="spacer"></span>
+
+    <!-- Botón Cerrar sesión -->
+    <button mat-button color="accent" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Cerrar sesión
+    </button>
+
   </mat-toolbar>
 </p>
 
@@ -25,8 +35,8 @@
     </mat-card-header>
 
     <div class="formularioRegistro">
-      
-      <form [formGroup]="personaForm" (ngSubmit)="guardar()">   
+
+      <form [formGroup]="personaForm" (ngSubmit)="guardar()">
 
 <!-- NOMBRE / APELLIDO -->
         <div class="form-group">
