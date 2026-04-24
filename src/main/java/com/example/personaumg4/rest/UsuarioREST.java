@@ -1,12 +1,13 @@
 package com.example.personaumg4.rest;
 
 import com.example.personaumg4.model.LoginRequest;
+import com.example.personaumg4.model.Usuario;
+import com.example.personaumg4.security.JwtService;
+import com.example.personaumg4.service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.personaumg4.service.UsuarioService;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -16,8 +17,12 @@ public class UsuarioREST {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private JwtService jwtService;
+
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+
         String username = request.getUsername();
         String password = request.getPassword();
 
@@ -25,10 +30,13 @@ public class UsuarioREST {
             return ResponseEntity.badRequest().body("Faltan parámetros");
         }
 
-        boolean success = usuarioService.login(username, password);
+        Usuario user = usuarioService.login(username, password);
 
-        if (success) {
-            return ResponseEntity.ok("Login exitoso");
+        if (user != null) {
+
+            String token = jwtService.generateToken(user);
+
+            return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(401).body("Usuario o contraseña incorrectos");
         }

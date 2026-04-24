@@ -20,5 +20,8 @@ public class Usuario implements Serializable {
     private String password;
 
     @Column(name = "estado_u")
-    private String estadoU; // ejemplo: "E" = activo, "I" = inactivo
+    private String estadoU; // "E" o "I"
+
+    @Column(name = "rol")
+    private String rol; // administrador
 }

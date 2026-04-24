@@ -1,85 +1,120 @@
-/* Fondo oscuro del login */
+/* Fondo general */
 .login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #000673; /* fondo oscuro */
+
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Card */
 .login-card {
   width: 360px;
-  padding: 24px;
-  border-radius: 12px;
-  background-color: #142157; /* card oscuro pero distinto del fondo */
-  color: #000000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+
+  color: #e2e8f0;
 }
 
-/* Título */
+/* Header */
 mat-card-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f8fafc;
 }
 
-/* Formulario */
+/* Inputs */
 .full-width {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.mat-input-element {
-  padding: 8px 0;
-  color:#ffffff /* texto blanco */
+/* Input texto */
+input {
+  color: #e2e8f0;
 }
 
+/* Label */
+mat-label {
+  color: #cbd5e1;
+}
+
+/* Outline del input */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 10px;
+  border-color: #334155;
+}
+
+/* Hover input */
+.mat-form-field-appearance-outline:hover .mat-form-field-outline {
+  border-color: #64748b;
+}
+
+/* Focus input */
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+  border-color: #94a3b8;
+}
+
+/* Iconos */
 mat-icon {
-  color: #E3E3E3; /* iconos blancos */
+  color: #94a3b8;
 }
 
-/* Botón login */
+/* Botón */
 .login-btn {
   width: 100%;
-  padding: 12px 0;
+  padding: 12px;
+  border-radius: 10px;
+
   font-weight: 600;
-  font-size: 15px;
-  border-radius: 8px;
-  background-color: #4a90e2;
-  color: #ffffff;
-  transition: background-color 0.2s ease;
+  font-size: 14px;
+
+  background: linear-gradient(135deg, #334155, #475569);
+  color: #f1f5f9;
+
+  transition: all 0.3s ease;
 }
 
 .login-btn:hover {
-  background-color: #357abd;
+  background: linear-gradient(135deg, #475569, #64748b);
+  transform: translateY(-1px);
 }
 
+/* Disabled */
 .login-btn:disabled {
-  background-color: #2f4f7f;
+  background: #1e293b;
+  color: #64748b;
   cursor: not-allowed;
 }
 
-/* Mensaje de error */
+/* Error */
 .mensaje {
-  color: #ff6b6b;
-  margin-top: 10px;
-  font-weight: 500;
+  color: #f87171;
+  margin-top: 12px;
   text-align: center;
+  font-size: 14px;
 }
 
-mat-label {
-  color: #f2f2f2f;
+/* Animación suave */
+.login-card {
+  animation: fadeIn 0.6s ease;
 }
 
-input{
-color: #ffffff;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-.custom-input.mat-form-field-appearance-outline .mat-form-field-outline {
-  border-color: #4a90e2;
-  border-width: 1px; /* borde completo */
-  border-radius: 6px;
-}
-

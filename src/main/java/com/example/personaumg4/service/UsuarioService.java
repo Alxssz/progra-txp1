@@ -11,13 +11,15 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public boolean login(String username, String password) {
+    public Usuario login(String username, String password) {
+
         Usuario user = usuarioRepository.findByUsername(username);
 
-        if (user == null) return false;
-        if (!"E".equalsIgnoreCase(user.getEstadoU())) return false;
-        if (!user.getPassword().equals(password)) return false;
+        if (user == null) return null;
+        if (!"E".equalsIgnoreCase(user.getEstadoU())) return null;
 
-        return true;
+        if (!user.getPassword().equals(password)) return null;
+
+        return user;
     }
 }

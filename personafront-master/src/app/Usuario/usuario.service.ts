@@ -7,12 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
 
-  private apiUrl = 'http://localhost:8080/usuarios'; // cambia al URL de tu backend
+  private apiUrl = 'http://localhost:8080/usuarios';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
-    // Llama al endpoint de login de tu backend
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password });
+    return this.http.post(`${this.apiUrl}/login`, { username, password }, { responseType: 'text' });
   }
 }

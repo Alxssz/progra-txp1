@@ -32,6 +32,10 @@ import { NivelesService } from './services/niveles/niveles.service';
 import { EstadosService } from './services/estados/estados.service';
 import { CarrerasService } from './services/carreras/carreras.service';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './usuario/auth.interceptor';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,13 +62,18 @@ import { CarrerasService } from './services/carreras/carreras.service';
     MatToolbarModule
   ],
   providers: [
-    UsuarioService,
-    PersonaService,
-    PaisesService,
-    NivelesService,
-    EstadosService,
-    CarrerasService
-  ],
-  bootstrap: [AppComponent],
+  UsuarioService,
+  PersonaService,
+  PaisesService,
+  NivelesService,
+  EstadosService,
+  CarrerasService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+],
+bootstrap: [AppComponent],
 })
 export class AppModule { }
